@@ -120,7 +120,7 @@ test.describe(`${pageNames.home}`, async () => {
         ).toHaveScreenshot(`${pageNames.home}-LogoGridPrem.png`);
     });
 
-    test.only("WholeHomePage", async ({ page }) => {
+    test("WholeHomePage", async ({ page }) => {
         //This script is for image that has a lazyload
         const img = page.locator("img[alt='Thomas Sanderson Facebook']");
         await img.scrollIntoViewIfNeeded();
