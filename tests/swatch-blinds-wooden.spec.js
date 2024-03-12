@@ -33,7 +33,7 @@ test.beforeEach(async ({ page }) => {
     await page.click("//span[text()[normalize-space()='Colour']]");
 });
 
-// ##################### Window Roman #####################
+// ##################### Blinds Roman #####################
 
 test.describe(`${pageNames.blindsWooden}`, async () => {
     test("WholePage", async ({ page }) => {

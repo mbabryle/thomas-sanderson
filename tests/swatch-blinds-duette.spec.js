@@ -35,7 +35,7 @@ test.beforeEach(async ({ page }) => {
     await page.click("//span[text()[normalize-space()='Material']]");
 });
 
-// ##################### Window Duette #####################
+// ##################### Blinds Duette #####################
 
 test.describe(`${pageNames.blindsDuette}`, async () => {
     test("WholePage", async ({ page }) => {

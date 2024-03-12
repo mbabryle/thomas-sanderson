@@ -35,7 +35,7 @@ test.beforeEach(async ({ page }) => {
     await page.click("//span[text()[normalize-space()='Material']]");
 });
 
-// ##################### Window Shutters #####################
+// ##################### Shutters #####################
 
 test.describe(`${pageNames.windowShutter}`, async () => {
     test("WholePage", async ({ page }) => {

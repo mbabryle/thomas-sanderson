@@ -34,7 +34,7 @@ test.beforeEach(async ({ page }) => {
     await page.click("//span[text()[normalize-space()='Feature']]");
 });
 
-// ##################### Window Roman #####################
+// ##################### Blinds Roman #####################
 
 test.describe(`${pageNames.blindsRoman}`, async () => {
     test("WholePage", async ({ page }) => {

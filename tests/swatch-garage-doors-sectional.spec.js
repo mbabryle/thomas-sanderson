@@ -34,7 +34,7 @@ test.beforeEach(async ({ page }) => {
     await page.click("//span[text()[normalize-space()='Material']]");
 });
 
-// ##################### Window Roman #####################
+// ##################### Garage Doors Sectional #####################
 
 test.describe(`${pageNames.sectionalGarageDoors}`, async () => {
     test("WholePage", async ({ page }) => {
