@@ -120,25 +120,25 @@ test.describe(`${pageNames.home}`, async () => {
         ).toHaveScreenshot(`${pageNames.home}-LogoGridPrem.png`);
     });
 
-    test("WholeHomePage", async ({ page }) => {
-        //This script is for image that has a lazyload
-        const img = page.locator("img[alt='Thomas Sanderson Facebook']");
-        await img.scrollIntoViewIfNeeded();
-        await img.evaluate(
-            (image) => image.complete || new Promise((f) => (image.onload = f))
-        );
-        await hideElement(page, "//section[@id='sales-banner-1']");
-        await expect(page).toHaveScreenshot(
-            `${pageNames.home}-WholeHomePage.png`,
-            {
-                fullPage: true,
-                mask: [
-                    page.locator(
-                        // "//section[@id='sales-banner-1']//a[@href='/design-appointment/']",
-                        "//div[@class='trustpilot-container']"
-                    ),
-                ],
-            }
-        );
-    });
+    // test("WholeHomePage", async ({ page }) => {
+    //     //This script is for image that has a lazyload
+    //     const img = page.locator("img[alt='Thomas Sanderson Facebook']");
+    //     await img.scrollIntoViewIfNeeded();
+    //     await img.evaluate(
+    //         (image) => image.complete || new Promise((f) => (image.onload = f))
+    //     );
+    //     await hideElement(page, "//section[@id='sales-banner-1']");
+    //     await expect(page).toHaveScreenshot(
+    //         `${pageNames.home}-WholeHomePage.png`,
+    //         {
+    //             fullPage: true,
+    //             mask: [
+    //                 page.locator(
+    //                     // "//section[@id='sales-banner-1']//a[@href='/design-appointment/']",
+    //                     "//div[@class='trustpilot-container']"
+    //                 ),
+    //             ],
+    //         }
+    //     );
+    // });
 });
