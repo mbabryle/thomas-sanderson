@@ -7,7 +7,7 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    sectionalGarageDoors: "Garrage Doors Sectional",
+    windowShutterBathroom: "Shutters Bathroom",
 };
 
 //Function to remove DOM using xpath
@@ -27,17 +27,15 @@ async function hideElement(page, xpath) {
 
 //Before Test this script will execute first
 test.beforeEach(async ({ page }) => {
-    await page.goto(`${baseURL}` + "garage-doors/roller-garage-doors/");
+    await page.goto(`${baseURL}` + "window-shutters/bathroom/");
     //await page.waitForLoadState("networkidle");
     await page.waitForLoadState("domcontentloaded");
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
-    await page.click("//span[text()[normalize-space()='Colour']]");
-    await page.click("//span[text()[normalize-space()='Material']]");
 });
 
-// ##################### Garage Doors Sectional #####################
+// ##################### Shutters #####################
 
-test.describe(`${pageNames.sectionalGarageDoors}`, async () => {
+test.describe(`${pageNames.windowShutterBathroom}`, async () => {
     test("WholePage", async ({ page }) => {
         //This script is for image that has a lazyload
         const img = page.locator("img[alt='Thomas Sanderson Facebook']");
@@ -47,7 +45,7 @@ test.describe(`${pageNames.sectionalGarageDoors}`, async () => {
         );
         await hideElement(page, "//section[@id='sales-banner-1']");
         await expect(page).toHaveScreenshot(
-            `${pageNames.sectionalGarageDoors}-WholePage.png`,
+            `${pageNames.windowShutterBathroom}-WholePage.png`,
             {
                 fullPage: true,
                 mask: [

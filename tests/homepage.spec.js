@@ -29,7 +29,8 @@ async function hideElement(page, xpath) {
 //Before Test this script will execute first
 test.beforeEach(async ({ page }) => {
     await page.goto(`${baseURL}`);
-    await page.waitForLoadState("networkidle");
+    //await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("domcontentloaded");
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 });
 
