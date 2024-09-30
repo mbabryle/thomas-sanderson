@@ -111,9 +111,9 @@ test.describe(`${pageNames.windowShutter}`, async () => {
         await waitPageAndCookie(page);
         // await page.waitForLoadState("networkidle");
         // await page.click('//button[@id="onetrust-accept-btn-handler"]');
-        await page.click("//span[text()[normalize-space()='Product Type']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Material']]");
+        // await page.click("//span[text()[normalize-space()='Product Type']]");
+        // await page.click("//span[text()[normalize-space()='Feature']]");
+        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
             `${pageNames.windowShutter}-WholePage.png`,
