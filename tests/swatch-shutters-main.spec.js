@@ -109,11 +109,6 @@ test.describe(`${pageNames.windowShutter}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "window-shutters/");
         await waitPageAndCookie(page);
-        // await page.waitForLoadState("networkidle");
-        // await page.click('//button[@id="onetrust-accept-btn-handler"]');
-        // await page.click("//span[text()[normalize-space()='Product Type']]");
-        // await page.click("//span[text()[normalize-space()='Feature']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
             `${pageNames.windowShutter}-WholePage.png`,
@@ -208,8 +203,8 @@ test.describe(`${pageNames.windowShutterThermal}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "thermal-solutions");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Pattern']]");
+        await page.click("//span[text()[normalize-space()='Colour']]");
+        await page.click("//span[text()[normalize-space()='Pattern']]");
         await captureScreenshot(
             page,
             `${pageNames.windowShutterThermal}-WholePage.png`,
@@ -279,7 +274,6 @@ test.describe(`${pageNames.windowShutterShaped}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "window-shutters/shaped/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Feature']]");
         await page.click("//span[text()[normalize-space()='Material']]");
         await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
@@ -294,7 +288,6 @@ test.describe(`${pageNames.windowShutterDoor}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "window-shutters/door/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Feature']]");
         await page.click("//span[text()[normalize-space()='Material']]");
         await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
@@ -309,10 +302,10 @@ test.describe(`${pageNames.windowShutterGableEnd}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "window-blinds/gable-end-solutions/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Pattern']]");
-        // await page.click("//span[text()[normalize-space()='Feature']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
+        await page.click("//span[text()[normalize-space()='Colour']]");
+        await page.click("//span[text()[normalize-space()='Pattern']]");
+        await page.click("//span[text()[normalize-space()='Feature']]");
+        await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
             `${pageNames.windowShutterGableEnd}-WholePage.png`,
