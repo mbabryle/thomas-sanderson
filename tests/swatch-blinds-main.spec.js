@@ -66,7 +66,7 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Shutters #####################
+// ##################### Blinds #####################
 
 test.describe(`${pageNames.blinds}`, async () => {
     test("WholePage", async ({ page }) => {
