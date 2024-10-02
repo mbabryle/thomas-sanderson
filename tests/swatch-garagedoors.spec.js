@@ -7,8 +7,9 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    con: "Conservatory Blinds",
-    conBlinds: "Conservatory Roof Blinds",
+    garageDoors: "Garage Doors",
+    garageDoorsRoller: "Roller Garage Doors",
+    garageDoorsSectional: "Sectional Garage Doors",
 };
 
 //Function to remove DOM using xpath
@@ -50,34 +51,45 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Conservatory Blinds #####################
+// ##################### Garage Doors #####################
 
-test.describe(`${pageNames.con}`, async () => {
+test.describe(`${pageNames.garageDoors}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/roof-blinds/");
+        await page.goto(`${baseURL}` + "garage-doors/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
+        await page.click("//span[text()[normalize-space()='Colour']]");
         await page.click("//span[text()[normalize-space()='Material']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
             page,
-            `${pageNames.con}-WholePage.png`,
+            `${pageNames.garageDoors}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.conBlinds}`, async () => {
+test.describe(`${pageNames.garageDoorsRoller}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/roof-blinds/");
+        await page.goto(`${baseURL}` + "garage-doors/roller-garage-doors/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
+        await page.click("//span[text()[normalize-space()='Colour']]");
+        await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.conBlinds}-WholePage.png`,
+            `${pageNames.garageDoorsRoller}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.garageDoorsSectional}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "garage-doors/sectional-garage-doors/");
+        await waitPageAndCookie(page);
+        await page.click("//span[text()[normalize-space()='Colour']]");
+        await page.click("//span[text()[normalize-space()='Material']]");
+        await captureScreenshot(
+            page,
+            `${pageNames.garageDoorsSectional}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

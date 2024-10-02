@@ -7,8 +7,7 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    con: "Conservatory Blinds",
-    conBlinds: "Conservatory Roof Blinds",
+    inspiration: "Inspiration",
 };
 
 //Function to remove DOM using xpath
@@ -50,34 +49,15 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Conservatory Blinds #####################
+// ##################### Inspiration #####################
 
-test.describe(`${pageNames.con}`, async () => {
+test.describe(`${pageNames.inspiration}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/roof-blinds/");
+        await page.goto(`${baseURL}` + "inspiration/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Material']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
             page,
-            `${pageNames.con}-WholePage.png`,
-            "//div[@class='trustpilot-container']"
-        );
-    });
-});
-
-test.describe(`${pageNames.conBlinds}`, async () => {
-    test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/roof-blinds/");
-        await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
-        await captureScreenshot(
-            page,
-            `${pageNames.conBlinds}-WholePage.png`,
+            `${pageNames.inspiration}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
