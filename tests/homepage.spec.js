@@ -9,6 +9,8 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 const pageNames = {
     global: "Global",
     home: "Home Page",
+    aboutUs: "About Us",
+    contact: "Contact",
 };
 
 //Function to remove DOM using xpath
@@ -26,21 +28,36 @@ async function hideElement(page, xpath) {
     }, xpath);
 }
 
-//Before Test this script will execute first
-test.beforeEach(async ({ page }) => {
-    await page.goto(`${baseURL}`);
-    0;
-    //await page.waitForLoadState("networkidle");
-    await page.waitForLoadState("domcontentloaded");
+//Function to capture image and wait to become fully loaded and remove uncessarry sales message
+async function captureScreenshot(page, imageName, maskSelector) {
+    const img = page.locator("img[alt='Thomas Sanderson Facebook']");
+    await img.scrollIntoViewIfNeeded();
+    await img.evaluate(
+        (image) => image.complete || new Promise((f) => (image.onload = f))
+    );
+    await hideElement(page, "//section[@id='sales-banner-1']");
+    await expect(page).toHaveScreenshot(imageName, {
+        animations: "disabled",
+        maxDiffPixelRatio: 0.2,
+        maxDiffPixels: 1000,
+        threshold: 0.2,
+        fullPage: true,
+        mask: [page.locator(maskSelector)],
+    });
+}
+
+//Function for waiting domcontent and clicks cookie
+async function waitPageAndCookie(page) {
+    await page.waitForLoadState("domcontentloaded", { timeout: 15000 });
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
-});
+}
 
 // ##################### Global ########################
 test.describe(`${pageNames.global}`, async () => {
     test("MegaNav", async ({ page }) => {
-        await expect(page.locator(".site-header__container")).toHaveScreenshot(
-            `${pageNames.global}-MegaNav.png`
-        );
+        await expect(
+            page.locator("//header[@class='site-header']")
+        ).toHaveScreenshot(`${pageNames.global}-MegaNav.png`);
     });
 
     test("Footer", async ({ page }) => {
@@ -53,84 +70,37 @@ test.describe(`${pageNames.global}`, async () => {
 // ##################### Home Page #####################
 
 test.describe(`${pageNames.home}`, async () => {
-    // test("ThirdSplit", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-1-homepageHeros']")
-    //     ).toHaveScreenshot(`${pageNames.home}-Hero-ThirdSplit.png`);
-    // });
-    // test("HeroPrem", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-5-heroPrem']")
-    //     ).toHaveScreenshot(`${pageNames.home}-HeroPrem.png`);
-    // });
-    // test("SalesModulePrem", async ({ page }) => {
-    //     await expect(
-    //         page.locator("//div[@id='block-6-salesModulePrem-inner']")
-    //     ).toHaveScreenshot(`${pageNames.home}-SalesModulePrem.png`);
-    // });
-    // test("ProductGrid", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-7-productsGrid']")
-    //     ).toHaveScreenshot(`${pageNames.home}-ProductGrid.png`);
-    // });
-    // test("InspirationPrem", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-8-inspirationPrem']")
-    //     ).toHaveScreenshot(`${pageNames.home}-InspirationPrem.png`);
-    // });
-    // test("USPGrid", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-9-uSPGrid']")
-    //     ).toHaveScreenshot(`${pageNames.home}-USPGrid.png`);
-    // });
-    // test("SalesModulePrem1", async ({ page }) => {
-    //     await expect(
-    //         page.locator("//div[@id='block-10-salesModulePrem-inner']")
-    //     ).toHaveScreenshot(`${pageNames.home}-SalesModulePrem1.png`);
-    // });
-    // test("NewsLetter", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-11-newsletter']")
-    //     ).toHaveScreenshot(`${pageNames.home}-NewsLetter.png`);
-    // });
-    // test("TrustPilotPrem", async ({ page }) => {
-    //     await hideElement(page, "//section[@id='sales-banner-1']");
-    //     await expect(
-    //         page.locator("//div[@id='block-12-trustpilotPrem']")
-    //     ).toHaveScreenshot(`${pageNames.home}-TrustPilotPrem.png`, {
-    //         mask: [page.locator("//div[@class='trustpilot-container']")],
-    //     });
-    // });
-    // test("LogoGridPrem", async ({ page }) => {
-    //     await expect(
-    //         page.locator("//div[@id='block-13-logoGridPrem']")
-    //     ).toHaveScreenshot(`${pageNames.home}-LogoGridPrem.png`);
-    // });
-    test("WholeHomePage", async ({ page }) => {
-        //This script is for image that has a lazyload
-        const img = page.locator("img[alt='Thomas Sanderson Facebook']");
-        await img.scrollIntoViewIfNeeded();
-        await img.evaluate(
-            (image) => image.complete || new Promise((f) => (image.onload = f))
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}`);
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.home}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
         );
-        await hideElement(page, "//section[@id='sales-banner-1']");
-        await expect(page).toHaveScreenshot(
-            `${pageNames.home}-WholeHomePage.png`,
-            {
-                fullPage: true,
-                mask: [
-                    page.locator(
-                        // "//section[@id='sales-banner-1']//a[@href='/design-appointment/']",
-                        "//div[@class='trustpilot-container']"
-                    ),
-                ],
-            }
+    });
+});
+
+test.describe(`${pageNames.aboutUs}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "about-us/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.aboutUs}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.contact}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "contact/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.contact}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
         );
     });
 });

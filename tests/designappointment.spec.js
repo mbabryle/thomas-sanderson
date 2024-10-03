@@ -7,10 +7,7 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    inspiration: "Inspiration",
-    inspirationArticles: "Inspiration Articles",
-    inspirationAuthors: "Inspiration Authors",
-    inspirationAuthorDetails: "Inspiration Author Details",
+    designAppointment: "Design Appointment",
 };
 
 //Function to remove DOM using xpath
@@ -52,54 +49,15 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Inspiration #####################
+// ##################### Design Appointment #####################
 
-test.describe(`${pageNames.inspiration}`, async () => {
+test.describe(`${pageNames.designAppointment}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "inspiration/");
+        await page.goto(`${baseURL}` + "design-appointment/");
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.inspiration}-WholePage.png`,
-            "//div[@class='trustpilot-container']"
-        );
-    });
-});
-
-test.describe(`${pageNames.inspirationArticles}`, async () => {
-    test("WholePage", async ({ page }) => {
-        await page.goto(
-            `${baseURL}` +
-                "inspiration/patio-door-blinds-and-shutters-buying-guide/"
-        );
-        await waitPageAndCookie(page);
-        await captureScreenshot(
-            page,
-            `${pageNames.inspirationArticles}-WholePage.png`,
-            "//div[@class='trustpilot-container']"
-        );
-    });
-});
-
-test.describe(`${pageNames.inspirationAuthors}`, async () => {
-    test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "inspiration/authors/");
-        await waitPageAndCookie(page);
-        await captureScreenshot(
-            page,
-            `${pageNames.inspirationAuthors}-WholePage.png`,
-            "//div[@class='trustpilot-container']"
-        );
-    });
-});
-
-test.describe(`${pageNames.inspirationAuthorDetails}`, async () => {
-    test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "inspiration/authors/doug-skins/");
-        await waitPageAndCookie(page);
-        await captureScreenshot(
-            page,
-            `${pageNames.inspirationAuthorDetails}-WholePage.png`,
+            `${pageNames.designAppointment}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
