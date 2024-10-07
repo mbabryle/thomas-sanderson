@@ -7,8 +7,11 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    con: "Conservatory Blinds",
-    conBlinds: "Conservatory Roof Blinds",
+    ourStoryInYourArea: "In Your Area",
+    ourStoryPartners: "Partners",
+    ourStoryCustomerReviews: "Customer Reviews",
+    ourStoryExibitionsAndShows: "Exibitions And Shows",
+    ourStoryPressAndMedia: "Press And Media",
 };
 
 //Function to remove DOM using xpath
@@ -50,34 +53,63 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Conservatory Blinds #####################Y
+// ##################### Our Story Section #####################
 
-test.describe(`${pageNames.con}`, async () => {
+test.describe(`${pageNames.ourStoryInYourArea}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/");
+        await page.goto(`${baseURL}` + "in-your-area/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Material']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
             page,
-            `${pageNames.con}-WholePage.png`,
+            `${pageNames.ourStoryInYourArea}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.conBlinds}`, async () => {
+test.describe(`${pageNames.ourStoryPartners}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "conservatory-blinds/roof-blinds/");
+        await page.goto(`${baseURL}` + "partners/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Pattern']]");
-        await page.click("//span[text()[normalize-space()='Feature']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
             page,
-            `${pageNames.conBlinds}-WholePage.png`,
+            `${pageNames.ourStoryPartners}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.ourStoryCustomerReviews}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "reviews/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.ourStoryCustomerReviews}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.ourStoryExibitionsAndShows}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "exhibitions-and-shows/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.ourStoryExibitionsAndShows}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.ourStoryPressAndMedia}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "about-us/press-and-release/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.ourStoryPressAndMedia}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
