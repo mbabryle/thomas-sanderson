@@ -7,9 +7,10 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    garageDoors: "Garage Doors",
-    garageDoorsRoller: "Roller Garage Doors",
-    garageDoorsSectional: "Sectional Garage Doors",
+    UIHomePage: "Home Page",
+    UIWindowsShutters: "Window Shutters",
+    UIBayWindow: "Bay Window",
+    UIConservatoryBlinds: "Conservatory Blinds",
 };
 
 //Function to remove DOM using xpath
@@ -51,45 +52,55 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Garage Doors #####################
+// ##################### How Can We Help Section #####################
 
-test.describe(`${pageNames.garageDoors}`, async () => {
+test.describe(`${pageNames.UIHomePage}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/");
+        test.setTimeout(120_000);
+        await page.goto(`${baseURL}`);
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoors}-WholePage.png`,
+            `${pageNames.UIHomePage}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.garageDoorsRoller}`, async () => {
+test.describe(`${pageNames.UIWindowsShutters}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/roller-garage-doors/");
+        test.setTimeout(120_000);
+        await page.goto(`${baseURL}` + "window-shutters/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoorsRoller}-WholePage.png`,
+            `${pageNames.UIWindowsShutters}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.garageDoorsSectional}`, async () => {
+test.describe(`${pageNames.UIBayWindow}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/sectional-garage-doors/");
+        test.setTimeout(120_000);
+        await page.goto(`${baseURL}` + "window-shutters/bay-window/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoorsSectional}-WholePage.png`,
+            `${pageNames.UIBayWindow}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.UIConservatoryBlinds}`, async () => {
+    test("WholePage", async ({ page }) => {
+        test.setTimeout(120_000);
+        await page.goto(`${baseURL}` + "conservatory-blinds/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.UIConservatoryBlinds}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

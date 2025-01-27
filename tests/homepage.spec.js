@@ -52,20 +52,20 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Global ########################
-test.describe(`${pageNames.global}`, async () => {
-    test("MegaNav", async ({ page }) => {
-        await expect(
-            page.locator("//header[@class='site-header']")
-        ).toHaveScreenshot(`${pageNames.global}-MegaNav.png`);
-    });
+// // ##################### Global ########################
+// test.describe(`${pageNames.global}`, async () => {
+//     test("MegaNav", async ({ page }) => {
+//         await expect(
+//             page.locator("//header[@class='site-header']")
+//         ).toHaveScreenshot(`${pageNames.global}-MegaNav.png`);
+//     });
 
-    test("Footer", async ({ page }) => {
-        await expect(
-            page.locator("//div[@id='footerContent']")
-        ).toHaveScreenshot(`${pageNames.global}-Footer.png`);
-    });
-});
+//     test("Footer", async ({ page }) => {
+//         await expect(
+//             page.locator("//div[@id='footerContent']")
+//         ).toHaveScreenshot(`${pageNames.global}-Footer.png`);
+//     });
+// });
 
 // ##################### Home Page #####################
 

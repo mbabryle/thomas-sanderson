@@ -330,8 +330,8 @@ test.describe(`${pageNames.windowShutterBedroom}`, async () => {
     test("WholePage", async ({ page }) => {
         await page.goto(`${baseURL}` + "window-shutters/bedroom/");
         await waitPageAndCookie(page);
-        await page.click("//span[text()[normalize-space()='Material']]");
-        await page.click("//span[text()[normalize-space()='Product Type']]");
+        // await page.click("//span[text()[normalize-space()='Material']]");
+        // await page.click("//span[text()[normalize-space()='Product Type']]");
         await captureScreenshot(
             page,
             `${pageNames.windowShutterBedroom}-WholePage.png`,

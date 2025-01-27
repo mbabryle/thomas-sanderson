@@ -7,9 +7,9 @@ const baseURL = "https://www.thomas-sanderson.co.uk/";
 // ##################### Pages #########################
 
 const pageNames = {
-    garageDoors: "Garage Doors",
-    garageDoorsRoller: "Roller Garage Doors",
-    garageDoorsSectional: "Sectional Garage Doors",
+    productsGuarantees: "Product Guarantees",
+    productsOrderingSamples: "Ordering Samples",
+    sitemaps: "Sitemap",
 };
 
 //Function to remove DOM using xpath
@@ -51,45 +51,39 @@ async function waitPageAndCookie(page) {
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
 }
 
-// ##################### Garage Doors #####################
+// ##################### Products Section #####################
 
-test.describe(`${pageNames.garageDoors}`, async () => {
+test.describe(`${pageNames.productsGuarantees}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/");
+        await page.goto(`${baseURL}` + "legal/product-guarantees/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoors}-WholePage.png`,
+            `${pageNames.productsGuarantees}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.garageDoorsRoller}`, async () => {
+test.describe(`${pageNames.productsOrderingSamples}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/roller-garage-doors/");
+        await page.goto(`${baseURL}` + "samples/");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoorsRoller}-WholePage.png`,
+            `${pageNames.productsOrderingSamples}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.garageDoorsSectional}`, async () => {
+test.describe(`${pageNames.sitemaps}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "garage-doors/sectional-garage-doors/");
+        await page.goto(`${baseURL}` + "sitemap/#");
         await waitPageAndCookie(page);
-        // await page.click("//span[text()[normalize-space()='Colour']]");
-        // await page.click("//span[text()[normalize-space()='Material']]");
         await captureScreenshot(
             page,
-            `${pageNames.garageDoorsSectional}-WholePage.png`,
+            `${pageNames.sitemaps}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

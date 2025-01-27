@@ -24,5 +24,10 @@ npx playwright test tests/brochurerequest.spec.js --update-snapshots
 npx playwright test tests/howcanwehelp.spec.js --update-snapshots
 npx playwright test tests/ourstory.spec.js --update-snapshots
 
+//Index Testing
+npx playwright test "tests/index/homepage.spec.js" --update-snapshots
+npx playwright test "tests/index/inspiration.spec.js" --update-snapshots
+
+
 //to show the report
 npx playwright show-report
