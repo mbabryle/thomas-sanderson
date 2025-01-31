@@ -2,10 +2,7 @@ import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
 
-const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
-const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
-
-const baseURL = `${newInstance}`;
+const baseURL = "https://headless-staging.thomas-sanderson.co.uk/";
 
 //OLD https://headless-staging-web-temp.azurewebsites.net/qa-generic/
 //NEW https://headless-staging.thomas-sanderson.co.uk/qa-generic/

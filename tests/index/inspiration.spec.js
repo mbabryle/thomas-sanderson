@@ -2,10 +2,10 @@ import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
 
-const baseURL = "https://headless-staging-web-temp.azurewebsites.net/";
+const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
+const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
 
-//OLD https://headless-staging-web-temp.azurewebsites.net/
-//NEW https://headless-staging.thomas-sanderson.co.uk/
+const baseURL = `${newInstance}`;
 
 const pageNames = {
     inspiration: "IT Inspiration",
@@ -44,6 +44,7 @@ async function captureScreenshot(page, imageName, maskSelector) {
         threshold: 0.2,
         fullPage: true,
         mask: [page.locator(maskSelector)],
+        timeout: 60000, // Increase the timeout to 60 seconds (default is 30 seconds)
     });
 }
 
@@ -51,6 +52,7 @@ async function captureScreenshot(page, imageName, maskSelector) {
 async function waitPageAndCookie(page) {
     await page.waitForLoadState("domcontentloaded", { timeout: 40000 });
     await page.click('//button[@id="onetrust-accept-btn-handler"]');
+    await page.waitForTimeout(3000); // Waits for 3 seconds
 }
 
 // ##################### Inspiration #####################

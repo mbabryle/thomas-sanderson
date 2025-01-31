@@ -1,17 +1,13 @@
 import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
+const baseURL = "https://headless-staging.thomas-sanderson.co.uk/";
 
-const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
-const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
-
-const baseURL = `${newInstance}`;
-
-//OLD https://headless-staging-web-temp.azurewebsites.net/qa-generic/
-//NEW https://headless-staging.thomas-sanderson.co.uk/qa-generic/
+//OLD https://headless-staging-web-temp.azurewebsites.net/qa-product/
+//NEW https://headless-staging.thomas-sanderson.co.uk/qa-product/
 
 const pageNames = {
-    generic: "IT Generic",
+    product: "IT Product",
 };
 
 // Function to remove DOM using XPath
@@ -67,15 +63,15 @@ async function waitPageAndCookie(page) {
     await page.waitForTimeout(3000); // Waits for 3 seconds
 }
 
-// ##################### Inspiration #####################
+// ##################### Product #####################
 
-test.describe(`${pageNames.generic}`, async () => {
+test.describe(`${pageNames.product}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "qa-generic/");
+        await page.goto(`${baseURL}` + "qa-product/");
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.generic}-WholePage.png`,
+            `${pageNames.product}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

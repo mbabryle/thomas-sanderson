@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
-const baseURL = "https://headless-staging-web-temp.azurewebsites.net/";
+const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
+const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
 
-//OLD https://headless-staging-web-temp.azurewebsites.net/qa-product/
-//NEW https://headless-staging.thomas-sanderson.co.uk/qa-product/
+const baseURL = `${newInstance}`;
 
 const pageNames = {
     product: "IT Product",
@@ -35,7 +35,7 @@ async function captureScreenshot(page, imageName, maskSelector) {
     await hideElement(page, "//section[@id='sales-banner-1']");
 
     // Ensure page is fully loaded and animations are disabled
-    await page.waitForLoadState("load", { timeout: 15000 }); // Ensure the entire page is loaded
+    await page.waitForLoadState("load", { timeout: 40000 }); // Ensure the entire page is loaded
     await page.waitForTimeout(1000); // Allow extra time for dynamic assets
 
     // Disable animations and transitions
@@ -52,14 +52,15 @@ async function captureScreenshot(page, imageName, maskSelector) {
         threshold: 0.2,
         fullPage: true,
         mask: [page.locator(maskSelector)],
-        timeout: 40000, // Increased timeout to handle delays
+        timeout: 15000, // Increased timeout to handle delays
     });
 }
 
 // Function to wait for DOM content and click the cookie button
 async function waitPageAndCookie(page) {
-    await page.waitForLoadState("domcontentloaded", { timeout: 40000 }); // Wait for DOM content to load
+    await page.waitForLoadState("domcontentloaded", { timeout: 15000 }); // Wait for DOM content to load
     await page.click('//button[@id="onetrust-accept-btn-handler"]'); // Accept cookies
+    await page.waitForTimeout(3000); // Waits for 3 seconds
 }
 
 // ##################### Product #####################

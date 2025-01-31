@@ -2,17 +2,16 @@ import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
 
-const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
-const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
+const baseURL = "https://headless-staging.thomas-sanderson.co.uk/";
 
-const baseURL = `${newInstance}`;
-
-// ##################### Pages #########################
+//OLD https://headless-staging-web-temp.azurewebsites.net/
+//NEW https://headless-staging.thomas-sanderson.co.uk/
 
 const pageNames = {
-    home: "IT Home",
-    aboutUs: "IT About Us",
-    contact: "IT Contact",
+    inspiration: "IT Inspiration",
+    inspirationArticles: "IT Inspiration Articles",
+    inspirationAuthors: "IT Inspiration Authors",
+    inspirationAuthorDetails: "IT Inspiration Author Details",
 };
 
 //Function to remove DOM using xpath
@@ -45,7 +44,6 @@ async function captureScreenshot(page, imageName, maskSelector) {
         threshold: 0.2,
         fullPage: true,
         mask: [page.locator(maskSelector)],
-        timeout: 60000, // Increase the timeout to 60 seconds (default is 30 seconds)
     });
 }
 
@@ -56,39 +54,54 @@ async function waitPageAndCookie(page) {
     await page.waitForTimeout(3000); // Waits for 3 seconds
 }
 
-// ##################### Home Page #####################
+// ##################### Inspiration #####################
 
-test.describe(`${pageNames.home}`, async () => {
+test.describe(`${pageNames.inspiration}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}`);
+        await page.goto(`${baseURL}` + "inspiration/");
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.home}-WholePage.png`,
+            `${pageNames.inspiration}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.aboutUs}`, async () => {
+test.describe(`${pageNames.inspirationArticles}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "about-us/");
+        await page.goto(
+            `${baseURL}` +
+                "inspiration/patio-door-blinds-and-shutters-buying-guide/"
+        );
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.aboutUs}-WholePage.png`,
+            `${pageNames.inspirationArticles}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });
 });
 
-test.describe(`${pageNames.contact}`, async () => {
+test.describe(`${pageNames.inspirationAuthors}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "contact/");
+        await page.goto(`${baseURL}` + "inspiration/authors/");
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.contact}-WholePage.png`,
+            `${pageNames.inspirationAuthors}-WholePage.png`,
+            "//div[@class='trustpilot-container']"
+        );
+    });
+});
+
+test.describe(`${pageNames.inspirationAuthorDetails}`, async () => {
+    test("WholePage", async ({ page }) => {
+        await page.goto(`${baseURL}` + "inspiration/authors/abi-clewley/");
+        await waitPageAndCookie(page);
+        await captureScreenshot(
+            page,
+            `${pageNames.inspirationAuthorDetails}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

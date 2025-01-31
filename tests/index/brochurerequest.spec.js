@@ -7,14 +7,13 @@ const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
 
 const baseURL = `${newInstance}`;
 
-//OLD https://headless-staging-web-temp.azurewebsites.net/qa-generic/
-//NEW https://headless-staging.thomas-sanderson.co.uk/qa-generic/
+// ##################### Pages #########################
 
 const pageNames = {
-    generic: "IT Generic",
+    brochure: "Brochure Request",
 };
 
-// Function to remove DOM using XPath
+//Function to remove DOM using xpath
 async function hideElement(page, xpath) {
     await page.evaluate((xpath) => {
         const element = document.evaluate(
@@ -29,7 +28,7 @@ async function hideElement(page, xpath) {
     }, xpath);
 }
 
-// Function to capture image and wait for full load, then remove unnecessary sales message
+//Function to capture image and wait to become fully loaded and remove uncessarry sales message
 async function captureScreenshot(page, imageName, maskSelector) {
     const img = page.locator("img[alt='Thomas Sanderson']");
     await img.scrollIntoViewIfNeeded();
@@ -37,18 +36,6 @@ async function captureScreenshot(page, imageName, maskSelector) {
         (image) => image.complete || new Promise((f) => (image.onload = f))
     );
     await hideElement(page, "//section[@id='sales-banner-1']");
-
-    // Ensure page is fully loaded and animations are disabled
-    await page.waitForLoadState("load", { timeout: 40000 }); // Ensure the entire page is loaded
-    await page.waitForTimeout(1000); // Allow extra time for dynamic assets
-
-    // Disable animations and transitions
-    await page.addStyleTag({
-        content:
-            "* { animation: none !important; transition: none !important; }",
-    });
-
-    // Capture the screenshot
     await expect(page).toHaveScreenshot(imageName, {
         animations: "disabled",
         maxDiffPixelRatio: 0.2,
@@ -56,26 +43,25 @@ async function captureScreenshot(page, imageName, maskSelector) {
         threshold: 0.2,
         fullPage: true,
         mask: [page.locator(maskSelector)],
-        timeout: 15000, // Increased timeout to handle delays
     });
 }
 
-// Function to wait for DOM content and click the cookie button
+//Function for waiting domcontent and clicks cookie
 async function waitPageAndCookie(page) {
-    await page.waitForLoadState("domcontentloaded", { timeout: 15000 }); // Wait for DOM content to load
-    await page.click('//button[@id="onetrust-accept-btn-handler"]'); // Accept cookies
+    await page.waitForLoadState("domcontentloaded", { timeout: 15000 });
+    await page.click('//button[@id="onetrust-accept-btn-handler"]');
     await page.waitForTimeout(3000); // Waits for 3 seconds
 }
 
-// ##################### Inspiration #####################
+// ##################### Brochure Request #####################
 
-test.describe(`${pageNames.generic}`, async () => {
+test.describe(`${pageNames.brochure}`, async () => {
     test("WholePage", async ({ page }) => {
-        await page.goto(`${baseURL}` + "qa-generic/");
+        await page.goto(`${baseURL}` + "brochure-request/");
         await waitPageAndCookie(page);
         await captureScreenshot(
             page,
-            `${pageNames.generic}-WholePage.png`,
+            `${pageNames.brochure}-WholePage.png`,
             "//div[@class='trustpilot-container']"
         );
     });

@@ -12,7 +12,7 @@ const { defineConfig, devices } = require("@playwright/test");
  */
 module.exports = defineConfig({
     testDir: "./tests",
-    // timeout: 120_000,
+    timeout: 120_000,
     //For Visual Testing Screenshot Folder
     snapshotPathTemplate: "{testDir}/screenshots/{arg}{ext}",
     /* Run tests in files in parallel */

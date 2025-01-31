@@ -2,10 +2,10 @@ import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
 
-const oldInstance = "https://headless-staging-web-temp.azurewebsites.net/";
-const newInstance = "https://headless-staging.thomas-sanderson.co.uk/";
+const baseURL = "https://headless-staging.thomas-sanderson.co.uk/";
 
-const baseURL = `${newInstance}`;
+//OLD https://headless-staging-web-temp.azurewebsites.net/
+//NEW https://headless-staging.thomas-sanderson.co.uk/
 
 // ##################### Pages #########################
 
@@ -45,7 +45,6 @@ async function captureScreenshot(page, imageName, maskSelector) {
         threshold: 0.2,
         fullPage: true,
         mask: [page.locator(maskSelector)],
-        timeout: 60000, // Increase the timeout to 60 seconds (default is 30 seconds)
     });
 }
 
