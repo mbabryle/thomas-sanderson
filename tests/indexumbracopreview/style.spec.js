@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 const baseURL = "https://headless-staging-web-temp.azurewebsites.net/";
 
 //OLD https://headless-staging-web-temp.azurewebsites.net/qa-style/
-//NEW https://headless-staging.thomas-sanderson.co.uk/qa-style/
+//NEW https://headless-umbraco.thomas-sanderson.co.uk/qa-style/
 
 const pageNames = {
     style: "IT Style",
