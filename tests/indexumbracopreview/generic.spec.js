@@ -2,10 +2,10 @@ import { test, expect } from "@playwright/test";
 
 // ##################### Base URL ######################
 
-const baseURL = "https://headless-staging.thomas-sanderson.co.uk/";
+const baseURL = "https://headless-staging-web-temp.azurewebsites.net/";
 
 //OLD https://headless-staging-web-temp.azurewebsites.net/qa-generic/
-//NEW https://headless-staging.thomas-sanderson.co.uk/qa-generic/
+//NEW https://headless-umbraco.thomas-sanderson.co.uk/qa-generic/
 
 const pageNames = {
     generic: "IT Generic",
